@@ -49,16 +49,22 @@ Public Class KeyboardHook
             Dim struct As KBDLLHOOKSTRUCT
             Select Case wParam
                 Case WM_KEYDOWN, WM_SYSKEYDOWN
-                    RaiseEvent KeyDown(CType(CType(Marshal.PtrToStructure(lParam, struct.GetType()), KBDLLHOOKSTRUCT).vkCode, Keys))
+                    RaiseEvent KeyDown(CType(Marshal.PtrToStructure(lParam, struct.GetType()), KBDLLHOOKSTRUCT).vkCode)
                 Case WM_KEYUP, WM_SYSKEYUP
-                    RaiseEvent KeyUp(CType(CType(Marshal.PtrToStructure(lParam, struct.GetType()), KBDLLHOOKSTRUCT).vkCode, Keys))
+                    RaiseEvent KeyUp(CType(Marshal.PtrToStructure(lParam, struct.GetType()), KBDLLHOOKSTRUCT).vkCode)
             End Select
         End If
         Return CallNextHookEx(IntPtr.Zero, nCode, wParam, lParam)
     End Function
 
     Public Sub New()
-        HHookID = SetWindowsHookEx(WH_KEYBOARD_LL, KBDLLHookProcDelegate, Marshal.GetHINSTANCE(Reflection.Assembly.GetExecutingAssembly.GetModules()(0)).ToInt32, 0)
+        'Check if system is 32 or 64, then set pointer
+        If Environment.Is64BitProcess Then
+            HHookID = SetWindowsHookEx(WH_KEYBOARD_LL, KBDLLHookProcDelegate, Marshal.GetHINSTANCE(Reflection.Assembly.GetExecutingAssembly.GetModules()(0)).ToInt64, 0)
+        Else
+            HHookID = SetWindowsHookEx(WH_KEYBOARD_LL, KBDLLHookProcDelegate, Marshal.GetHINSTANCE(Reflection.Assembly.GetExecutingAssembly.GetModules()(0)).ToInt32, 0)
+        End If
+
         If HHookID = IntPtr.Zero Then
             Throw New Exception("Could not set keyboard hook")
         End If
