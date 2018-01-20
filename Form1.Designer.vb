@@ -48,6 +48,7 @@ Partial Class Form1
         Me.BT_ChangeStart = New System.Windows.Forms.Button()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.BT_Reset = New System.Windows.Forms.Button()
+        Me.BTN_SaveSettings = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -103,6 +104,7 @@ Partial Class Form1
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.BTN_SaveSettings)
         Me.GroupBox1.Controls.Add(Me.TXT_RandMax)
         Me.GroupBox1.Controls.Add(Me.TXT_RandMin)
         Me.GroupBox1.Controls.Add(Me.Label5)
@@ -204,6 +206,12 @@ Partial Class Form1
         Me.BT_Reset.Name = "BT_Reset"
         Me.BT_Reset.UseVisualStyleBackColor = True
         '
+        'BTN_SaveSettings
+        '
+        resources.ApplyResources(Me.BTN_SaveSettings, "BTN_SaveSettings")
+        Me.BTN_SaveSettings.Name = "BTN_SaveSettings"
+        Me.BTN_SaveSettings.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         resources.ApplyResources(Me, "$this")
@@ -248,4 +256,5 @@ Partial Class Form1
     Friend WithEvents BT_ChangeStart As Button
     Friend WithEvents BT_ChangeStop As Button
     Friend WithEvents BT_Reset As Button
+    Friend WithEvents BTN_SaveSettings As Button
 End Class

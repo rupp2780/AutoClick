@@ -1,8 +1,14 @@
-﻿Public Class Form1
+﻿Imports System.IO
+
+Public Class Form1
     Declare Sub mouse_event Lib "user32" Alias "mouse_event" (ByVal dwFlags As Long, ByVal dx As Long, ByVal dy As Long, ByVal cButtons As Long, ByVal dwExtraInfo As Long)
 
     'Establish Keyboard hook
     Private WithEvents kbHook As New KeyboardHook
+
+    'Save settings
+    Dim settingsFileDirectory As String = "C:\temp\AutoClickSettings\"
+    Dim settingsFileLocation As String = "C:\temp\AutoClickSettings\config.ini"
 
     'Set values for setting amt of clicks
     Dim ClickCount As Integer = 0
@@ -125,6 +131,9 @@
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Load settings file
+        LoadSettings()
+
         TXT_StartKey.ReadOnly = True
         TXT_StartKey.Enabled = False
         TXT_StopKey.ReadOnly = True
@@ -134,5 +143,57 @@
 
     Private Sub BT_Reset_Click(sender As Object, e As EventArgs) Handles BT_Reset.Click
         TXT_Test.Text = 0
+    End Sub
+
+    'Load settings from file
+    Private Sub LoadSettings()
+        'Check if settings file exists
+        If Not File.Exists(settingsFileLocation) Then Exit Sub
+
+        'Read file and set controls to settings
+        Using sr As New StreamReader(settingsFileLocation)
+            Dim Line As String = sr.ReadLine
+            Do While Line IsNot Nothing
+
+                Select Case True
+                    Case Line.Contains("StartKey=")
+                        TXT_StartKey.Text = Line.Replace("StartKey=", "")
+                    Case Line.Contains("StopKey=")
+                        TXT_StopKey.Text = Line.Replace("StopKey=", "")
+                    Case Line.Contains("Interval=")
+                        TXT_Interval.Text = Line.Replace("Interval=", "")
+                    Case Line.Contains("RandMax=")
+                        TXT_RandMax.Text = Line.Replace("RandMax=", "")
+                    Case Line.Contains("RandMin=")
+                        TXT_RandMin.Text = Line.Replace("RandMin=", "")
+                    Case Line.Contains("UseRandom=")
+                        CHK_RandClick.Checked = Line.Replace("UseRandom=", "")
+                    Case Else
+                        Exit Sub
+                End Select
+
+                Line = sr.ReadLine()
+            Loop
+        End Using
+    End Sub
+
+    'Save settings to file
+    Private Sub SaveSettings()
+        Directory.CreateDirectory(settingsFileDirectory)
+        'File.Create(settingsFileLocation)
+
+        Dim settingsWriter As New StreamWriter(settingsFileLocation)
+        Using settingsWriter
+            settingsWriter.WriteLine("StartKey=" & TXT_StartKey.Text)
+            settingsWriter.WriteLine("StopKey=" & TXT_StopKey.Text)
+            settingsWriter.WriteLine("Interval=" & TXT_Interval.Text)
+            settingsWriter.WriteLine("RandMax=" & TXT_RandMax.Text)
+            settingsWriter.WriteLine("RandMin=" & TXT_RandMin.Text)
+            settingsWriter.WriteLine("UseRandom=" & CHK_RandClick.Checked)
+        End Using
+    End Sub
+
+    Private Sub BTN_SaveSettings_Click(sender As Object, e As EventArgs) Handles BTN_SaveSettings.Click
+        SaveSettings()
     End Sub
 End Class

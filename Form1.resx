@@ -321,7 +321,31 @@
     <value>GroupBox1</value>
   </data>
   <data name="&gt;&gt;CHK_RandClick.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
+  </data>
+  <data name="BTN_SaveSettings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>211, 42</value>
+  </data>
+  <data name="BTN_SaveSettings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 46</value>
+  </data>
+  <data name="BTN_SaveSettings.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="BTN_SaveSettings.Text" xml:space="preserve">
+    <value>Save Settings</value>
+  </data>
+  <data name="&gt;&gt;BTN_SaveSettings.Name" xml:space="preserve">
+    <value>BTN_SaveSettings</value>
+  </data>
+  <data name="&gt;&gt;BTN_SaveSettings.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BTN_SaveSettings.Parent" xml:space="preserve">
+    <value>GroupBox1</value>
+  </data>
+  <data name="&gt;&gt;BTN_SaveSettings.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="TXT_RandMax.Location" type="System.Drawing.Point, System.Drawing">
     <value>104, 68</value>
@@ -345,7 +369,7 @@
     <value>GroupBox1</value>
   </data>
   <data name="&gt;&gt;TXT_RandMax.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="TXT_RandMin.Location" type="System.Drawing.Point, System.Drawing">
     <value>104, 42</value>
@@ -369,7 +393,7 @@
     <value>GroupBox1</value>
   </data>
   <data name="&gt;&gt;TXT_RandMin.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="Label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -400,7 +424,7 @@
     <value>GroupBox1</value>
   </data>
   <data name="&gt;&gt;Label5.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="Label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -427,7 +451,7 @@
     <value>GroupBox1</value>
   </data>
   <data name="&gt;&gt;Label4.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="GroupBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>15, 115</value>
